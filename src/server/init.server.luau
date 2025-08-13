@@ -1,15 +1,7 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
-local repStorage = game:GetService("ReplicatedStorage")
 
-local SprintEvent = repStorage:WaitForChild("Shared"):WaitForChild("SprintEvent")
-
-if SprintEvent then
-    print("SprintEvent found")
-else
-    print("SprintEvent not found")
-end
-
+local rp = game:GetService("ReplicatedStorage")
+local SprintEvent = rp:WaitForChild("Shared"):WaitForChild("SprintEvent")
 
 local NORMAL_SPEED = 16
 local SPRINT_SPEED = 28
@@ -30,7 +22,6 @@ SprintEvent.OnServerEvent:Connect(function(player, isSprinting)
     if player.Character then
         local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
         if humanoid then
-            print("Player", player.Name, "is sprinting:", isSprinting)
             humanoid.WalkSpeed = isSprinting and SPRINT_SPEED or NORMAL_SPEED
         end
     end
